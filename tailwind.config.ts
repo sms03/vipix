@@ -57,6 +57,27 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Custom tech colors
+        tech: {
+          blue: "hsl(var(--tech-blue))",
+          teal: "hsl(var(--tech-teal))",
+          dark: "hsl(var(--tech-dark))",
+          gray: "hsl(var(--tech-gray))",
+          light: "hsl(var(--tech-light))",
+        },
+      },
+      backgroundImage: {
+        'gradient-primary': 'var(--gradient-primary)',
+        'gradient-card': 'var(--gradient-card)',
+        'gradient-subtle': 'var(--gradient-subtle)',
+      },
+      boxShadow: {
+        'tech': 'var(--shadow-tech)',
+        'card-hover': 'var(--shadow-card)',
+        'tech-hover': 'var(--shadow-hover)',
+      },
+      fontFamily: {
+        mono: ['JetBrains Mono', 'Consolas', 'Monaco', 'monospace'],
       },
       borderRadius: {
         lg: "var(--radius)",
