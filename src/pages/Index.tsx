@@ -119,7 +119,7 @@ const Index = () => {
               {/* Technical Details */}
               <div className="flex-1 flex flex-col gap-4 min-h-0">
                 <h3 className={compact ? 'text-base md:text-lg font-semibold text-foreground shrink-0' : 'text-lg md:text-xl font-semibold text-foreground shrink-0'}>Technical Details</h3>
-                <div className={"flex-1 overflow-auto details-scroll scrollbar-tech-thin pr-1 " + (compact ? 'text-sm' : '')}>
+                <div className={"flex-1 overflow-y-scroll details-scroll scrollbar-tech-thin scrollbar-stable pr-1 min-h-0 " + (compact ? 'text-sm' : '')}>
                   {isAnalyzing ? (
                     <div className="flex items-center justify-center h-full bg-card/80 backdrop-blur-sm rounded-2xl shadow-elevated border border-border/50">
                       <div className="text-center p-8">
