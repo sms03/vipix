@@ -8,6 +8,7 @@ import { Loader2, RotateCcw } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useCompact } from '@/hooks/use-compact';
 import { useViewportScale } from '@/hooks/useViewportScale';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -16,6 +17,8 @@ const Index = () => {
   const { toast } = useToast();
   const compact = useCompact();
   const scale = useViewportScale(1280, 800, 0.65);
+  const isMobile = useIsMobile();
+  const uiScale = isMobile ? 1 : scale;
 
   const handleFileSelect = async (file: File) => {
     setSelectedFile(file);
@@ -53,10 +56,10 @@ const Index = () => {
   };
 
   return (
-    <div className={"relative flex flex-col min-h-dvh bg-transparent overflow-hidden " + (compact ? 'compact' : '')}>
-      <div className={"relative z-10 flex-1 container mx-auto px-4 py-8 md:py-12 lg:py-16 flex flex-col gap-6 md:gap-10 vh-adapt origin-top " + (compact ? 'py-4 gap-4 md:py-6' : '')}
-       style={{ '--ui-scale': scale } as React.CSSProperties}>
-    <div className="transform-gpu" style={{ scale: 'var(--ui-scale)' }}>
+  <div className={"relative flex flex-col min-h-dvh bg-transparent overflow-hidden " + (compact ? 'compact ' : '') + (isMobile ? ' mobile' : '')}>
+  <div className={"relative z-10 flex-1 container mx-auto px-4 py-8 md:py-12 lg:py-16 flex flex-col gap-6 md:gap-10 vh-adapt origin-top " + (compact ? 'py-4 gap-4 md:py-6' : '')}
+   style={{ '--ui-scale': uiScale } as React.CSSProperties}>
+    <div className="transform-gpu" style={isMobile ? undefined : { scale: 'var(--ui-scale)' }}>
   {!selectedFile ? (
           <div className={"flex-1 flex flex-col items-center justify-center text-center gap-8 md:gap-12 " + (compact ? 'gap-6 md:gap-8' : '')}>
             <div className="space-y-6 max-w-4xl mx-auto px-2">
