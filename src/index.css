@@ -149,3 +149,70 @@ All colors MUST be HSL.
     font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 }
+
+/* Viewport adaptive helpers */
+.vh-adapt {
+  /* Use dynamic viewport unit with clamp to prevent huge spacing on tall screens */
+  --gap-scale: clamp(0.75rem, 1.2vh, 2rem);
+}
+
+.hero-title {
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.375rem);
+}
+
+.action-bar {
+  min-height: 3rem;
+}
+
+.details-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.details-scroll::-webkit-scrollbar-track {
+  background: hsl(var(--muted) / 0.3);
+  border-radius: 999px;
+}
+.details-scroll::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.4);
+  border-radius: 999px;
+}
+.details-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.4) hsl(var(--muted) / 0.3);
+}
+
+/* Scaled UI smoothing */
+.transform-gpu { transform-origin: top center; }
+
+/* Compact mode utilities (applied when ancestor has .compact class) */
+.font-text, body { font-family: 'Roboto', 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+.font-sans { font-family: 'Roboto', 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+.compact .compact\:space-y-6 > * + * { margin-top: 1.5rem; }
+.compact .compact\:p-6 { padding: 1.5rem; }
+.compact .compact\:gap-5 { gap: 1.25rem; }
+.compact .compact\:pb-3 { padding-bottom: 0.75rem; }
+.compact .compact\:space-y-3 > * + * { margin-top: 0.75rem; }
+.compact .compact\:py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
+.compact .compact\:rounded-xl { border-radius: 0.75rem; }
+.compact .compact\:p-6 { padding:1.5rem; }
+.compact .compact\:gap-4 { gap:1rem; }
+
+
+@media (max-height: 760px) {
+  .hero-title { font-size: clamp(2rem, 5vw, 3.25rem); }
+  .hero-sub { font-size: clamp(0.9rem, 1.8vw, 1.1rem); }
+  .action-bar h2 { font-size: 1.5rem; }
+}
+
+@media (max-height: 640px) {
+  .hero-title { font-size: clamp(1.75rem, 4.8vw, 2.75rem); }
+  .hero-sub { display: none; }
+  .vh-adapt { padding-top: 1.25rem !important; padding-bottom: 1.25rem !important; }
+}
