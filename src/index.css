@@ -172,21 +172,106 @@ All colors MUST be HSL.
   min-height: 3rem;
 }
 
-.details-scroll::-webkit-scrollbar {
+/* legacy details-scroll replaced by custom scrollbar utility */
+.details-scroll { scrollbar-width: thin; }
+
+/* ===== Reusable Custom Scrollbars ===== */
+/* Apply class .scrollbar-tech (or .scrollbar-tech-thin) to any scroll container */
+.scrollbar-tech,
+.scrollbar-tech-thin,
+body {
+  scrollbar-color: hsl(var(--primary) / 0.45) hsl(var(--muted) / 0.25);
+  scrollbar-width: thin; /* Firefox */
+}
+
+/* Base track & thumb styling (WebKit) */
+.scrollbar-tech::-webkit-scrollbar,
+.scrollbar-tech-thin::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+.scrollbar-tech-thin::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
-.details-scroll::-webkit-scrollbar-track {
-  background: hsl(var(--muted) / 0.3);
+
+.scrollbar-tech::-webkit-scrollbar-track,
+.scrollbar-tech-thin::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background:
+    linear-gradient(180deg, hsl(var(--muted) / 0.35), hsl(var(--muted) / 0.15));
   border-radius: 999px;
+  box-shadow: inset 0 0 0 1px hsl(var(--border) / 0.6), inset 0 2px 4px hsl(var(--border) / 0.4);
 }
-.details-scroll::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary) / 0.4);
+
+@media (prefers-color-scheme: dark) {
+  .scrollbar-tech::-webkit-scrollbar-track,
+  .scrollbar-tech-thin::-webkit-scrollbar-track,
+  body::-webkit-scrollbar-track {
+    background:
+      linear-gradient(180deg, hsl(var(--muted) / 0.15), hsl(var(--muted) / 0.05));
+    box-shadow: inset 0 0 0 1px hsl(var(--border) / 0.25), inset 0 2px 4px hsl(var(--border) / 0.15);
+  }
+}
+
+.scrollbar-tech::-webkit-scrollbar-thumb,
+.scrollbar-tech-thin::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  position: relative;
+  background:
+    linear-gradient(135deg,
+      hsl(var(--primary) / 0.55) 0%,
+      hsl(var(--tech-purple) / 0.55) 100%
+    );
   border-radius: 999px;
+  border: 3px solid transparent; /* Creates padding illusion */
+  background-clip: padding-box;
+  box-shadow:
+    0 2px 6px -2px hsl(var(--tech-blue) / 0.35),
+    0 0 0 1px hsl(var(--primary) / 0.35) inset;
+  transition: background 160ms ease, box-shadow 160ms ease, border 160ms ease;
 }
-.details-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: hsl(var(--primary) / 0.4) hsl(var(--muted) / 0.3);
+
+.scrollbar-tech-thin::-webkit-scrollbar-thumb {
+  border-width: 2px;
 }
+
+.scrollbar-tech::-webkit-scrollbar-thumb:hover,
+.scrollbar-tech-thin::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(135deg,
+      hsl(var(--primary) / 0.75) 0%,
+      hsl(var(--tech-purple) / 0.75) 100%
+    );
+  box-shadow:
+    0 4px 12px -4px hsl(var(--tech-blue) / 0.45),
+    0 0 0 1px hsl(var(--primary) / 0.5) inset;
+}
+
+.scrollbar-tech::-webkit-scrollbar-thumb:active,
+.scrollbar-tech-thin::-webkit-scrollbar-thumb:active,
+body::-webkit-scrollbar-thumb:active {
+  background:
+    linear-gradient(135deg,
+      hsl(var(--tech-purple) / 0.85) 0%,
+      hsl(var(--primary) / 0.85) 100%
+    );
+  box-shadow:
+    0 2px 8px -2px hsl(var(--tech-purple) / 0.55),
+    0 0 0 1px hsl(var(--primary) / 0.55) inset;
+}
+
+/* Corner */
+.scrollbar-tech::-webkit-scrollbar-corner,
+.scrollbar-tech-thin::-webkit-scrollbar-corner,
+body::-webkit-scrollbar-corner { background: transparent; }
+
+/* Optional: hide scrollbar while keeping scroll functionality */
+.scrollbar-hide { scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
 
 /* Scaled UI smoothing */
 .transform-gpu { transform-origin: top center; }
