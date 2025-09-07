@@ -142,9 +142,18 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground font-text antialiased;
     font-feature-settings: 'rlig' 1, 'calt' 1;
-    /* Force vertical scrollbar so custom styling is always visible (even if content fits) */
-    overflow-y: scroll;
+    /* Allow natural page scroll (hero view). We'll disable body scroll when results view is active to avoid double scrollbars. */
+    overflow-y: auto;
   }
+  body.no-body-scroll { overflow-y: hidden; }
+
+  /* Hide native scrollbar in custom scroll area (we render our own overlay when enabled) */
+  .custom-scroll-container {
+    overflow-y: auto;
+    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .custom-scroll-container::-webkit-scrollbar { display: none; }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-sans;
