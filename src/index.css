@@ -8,50 +8,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 210 15% 97%;
-    --foreground: 215 25% 27%;
+    --background: 252 6% 98%;
+    --foreground: 240 10% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 27%;
+    --card-foreground: 240 10% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 27%;
+    --popover-foreground: 240 10% 12%;
 
-    --primary: 198 93% 60%;
+    --primary: 221 83% 53%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 12% 94%;
-    --secondary-foreground: 215 25% 27%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
 
-    --muted: 210 12% 94%;
-    --muted-foreground: 215 15% 58%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
 
-    --accent: 188 95% 68%;
-    --accent-foreground: 215 25% 27%;
+    --accent: 240 5% 96%;
+    --accent-foreground: 240 6% 10%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 210 18% 87%;
-    --input: 210 18% 87%;
-    --ring: 198 93% 60%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 221 83% 53%;
 
-    /* Custom design system colors */
-    --tech-blue: 198 93% 60%;
-    --tech-teal: 188 95% 68%;
-    --tech-dark: 215 25% 27%;
-    --tech-gray: 215 15% 58%;
-    --tech-light: 210 15% 97%;
+    /* Premium design system colors */
+    --tech-blue: 221 83% 53%;
+    --tech-purple: 250 84% 60%;
+    --tech-dark: 240 10% 12%;
+    --tech-gray: 240 4% 46%;
+    --tech-light: 252 6% 98%;
+    --tech-surface: 0 0% 100%;
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--tech-blue)), hsl(var(--tech-teal)));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 12% 97%));
-    --gradient-subtle: linear-gradient(180deg, hsl(210 15% 98%), hsl(210 12% 96%));
+    /* Modern gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--tech-blue)), hsl(var(--tech-purple)));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(240 5% 98%));
+    --gradient-subtle: linear-gradient(180deg, hsl(252 6% 99%), hsl(240 5% 97%));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--tech-blue) / 0.03), hsl(var(--tech-purple) / 0.03));
     
-    /* Shadows */
-    --shadow-tech: 0 4px 20px -4px hsl(var(--tech-blue) / 0.25);
-    --shadow-card: 0 2px 10px -2px hsl(215 25% 27% / 0.1);
-    --shadow-hover: 0 8px 30px -8px hsl(var(--tech-blue) / 0.3);
+    /* Elevated shadows */
+    --shadow-tech: 0 4px 25px -6px hsl(var(--tech-blue) / 0.15);
+    --shadow-card: 0 1px 3px hsl(240 4% 46% / 0.1), 0 1px 2px hsl(240 4% 46% / 0.06);
+    --shadow-hover: 0 10px 40px -15px hsl(var(--tech-blue) / 0.25);
+    --shadow-elevated: 0 25px 50px -12px hsl(240 10% 12% / 0.25);
 
     --radius: 0.5rem;
 
@@ -73,50 +76,53 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 215 28% 17%;
-    --foreground: 210 40% 98%;
+    --background: 240 10% 4%;
+    --foreground: 240 5% 96%;
 
-    --card: 215 25% 20%;
-    --card-foreground: 210 40% 98%;
+    --card: 240 8% 6%;
+    --card-foreground: 240 5% 96%;
 
-    --popover: 215 25% 20%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 240 8% 6%;
+    --popover-foreground: 240 5% 96%;
 
-    --primary: 198 93% 60%;
-    --primary-foreground: 215 28% 17%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 240 10% 4%;
 
-    --secondary: 215 20% 25%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 240 5% 96%;
 
-    --muted: 215 20% 25%;
-    --muted-foreground: 215 15% 70%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
 
-    --accent: 188 95% 68%;
-    --accent-foreground: 215 28% 17%;
+    --accent: 240 4% 16%;
+    --accent-foreground: 240 5% 96%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 240 5% 96%;
 
-    --border: 215 20% 25%;
-    --input: 215 20% 25%;
-    --ring: 198 93% 60%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 221 83% 53%;
 
-    /* Dark mode custom colors */
-    --tech-blue: 198 93% 60%;
-    --tech-teal: 188 95% 68%;
-    --tech-dark: 210 40% 98%;
-    --tech-gray: 215 15% 70%;
-    --tech-light: 215 28% 17%;
+    /* Dark mode premium colors */
+    --tech-blue: 221 83% 53%;
+    --tech-purple: 250 84% 60%;
+    --tech-dark: 240 5% 96%;
+    --tech-gray: 240 5% 65%;
+    --tech-light: 240 10% 4%;
+    --tech-surface: 240 8% 6%;
     
-    /* Dark gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--tech-blue)), hsl(var(--tech-teal)));
-    --gradient-card: linear-gradient(145deg, hsl(215 25% 20%), hsl(215 20% 22%));
-    --gradient-subtle: linear-gradient(180deg, hsl(215 25% 19%), hsl(215 20% 21%));
+    /* Dark modern gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--tech-blue)), hsl(var(--tech-purple)));
+    --gradient-card: linear-gradient(145deg, hsl(240 8% 6%), hsl(240 6% 8%));
+    --gradient-subtle: linear-gradient(180deg, hsl(240 8% 5%), hsl(240 6% 7%));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--tech-blue) / 0.05), hsl(var(--tech-purple) / 0.05));
     
-    /* Dark shadows */
-    --shadow-tech: 0 4px 20px -4px hsl(var(--tech-blue) / 0.4);
-    --shadow-card: 0 2px 10px -2px hsl(0 0% 0% / 0.3);
-    --shadow-hover: 0 8px 30px -8px hsl(var(--tech-blue) / 0.5);
+    /* Dark elevated shadows */
+    --shadow-tech: 0 4px 25px -6px hsl(var(--tech-blue) / 0.3);
+    --shadow-card: 0 1px 3px hsl(0 0% 0% / 0.2), 0 1px 2px hsl(0 0% 0% / 0.1);
+    --shadow-hover: 0 10px 40px -15px hsl(var(--tech-blue) / 0.4);
+    --shadow-elevated: 0 25px 50px -12px hsl(0 0% 0% / 0.5);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -134,6 +140,12 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-text antialiased;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 }

@@ -28,39 +28,39 @@ export const FileUpload = ({ onFileSelect, className }: FileUploadProps) => {
     <div
       {...getRootProps()}
       className={cn(
-        "relative overflow-hidden rounded-xl border-2 border-dashed transition-all duration-300 cursor-pointer group",
-        "bg-gradient-card shadow-card-hover hover:shadow-tech-hover",
+        "relative overflow-hidden rounded-3xl border-2 border-dashed transition-all duration-500 cursor-pointer group",
+        "bg-card/50 backdrop-blur-sm shadow-elevated hover:shadow-tech-hover",
         isDragActive 
-          ? "border-primary bg-primary/5 scale-[1.02]" 
-          : "border-border hover:border-primary/50",
+          ? "border-primary bg-gradient-primary/5 scale-[1.02]" 
+          : "border-border/50 hover:border-primary/60",
         className
       )}
     >
       <input {...getInputProps()} />
-      <div className="flex flex-col items-center justify-center p-12 text-center">
-        <div className="mb-6 relative">
-          <div className="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-primary shadow-tech mb-4 group-hover:scale-110 transition-transform duration-300">
-            <Upload className="w-8 h-8 text-primary-foreground" />
+      <div className="flex flex-col items-center justify-center p-16 text-center">
+        <div className="mb-8 relative">
+          <div className="flex items-center justify-center w-24 h-24 rounded-3xl bg-gradient-primary shadow-elevated mb-6 group-hover:scale-110 transition-all duration-500">
+            <Upload className="w-10 h-10 text-primary-foreground" />
           </div>
-          <div className="absolute -bottom-2 -right-2 flex space-x-1">
-            <div className="w-6 h-6 rounded-full bg-tech-blue/20 flex items-center justify-center">
-              <FileVideo className="w-3 h-3 text-tech-blue" />
+          <div className="absolute -bottom-3 -right-3 flex space-x-2">
+            <div className="w-8 h-8 rounded-xl bg-tech-blue/10 backdrop-blur-sm flex items-center justify-center border border-tech-blue/20">
+              <FileVideo className="w-4 h-4 text-tech-blue" />
             </div>
-            <div className="w-6 h-6 rounded-full bg-tech-teal/20 flex items-center justify-center">
-              <FileImage className="w-3 h-3 text-tech-teal" />
+            <div className="w-8 h-8 rounded-xl bg-tech-purple/10 backdrop-blur-sm flex items-center justify-center border border-tech-purple/20">
+              <FileImage className="w-4 h-4 text-tech-purple" />
             </div>
           </div>
         </div>
         
-        <h3 className="text-xl font-semibold text-foreground mb-2">
+        <h3 className="text-2xl font-bold text-foreground mb-4">
           {isDragActive ? 'Drop your file here' : 'Upload Media File'}
         </h3>
-        <p className="text-muted-foreground mb-4 max-w-sm">
-          Drag and drop your video or photo file, or click to browse
+        <p className="text-muted-foreground mb-8 max-w-md text-lg leading-relaxed">
+          Drag and drop your video or photo file, or click to browse and analyze
         </p>
-        <div className="flex flex-wrap justify-center gap-2 text-xs text-tech-gray">
-          <span className="px-2 py-1 bg-secondary rounded-md">Videos: MP4, AVI, MOV, WEBM</span>
-          <span className="px-2 py-1 bg-secondary rounded-md">Photos: JPEG, PNG, HEIC, GIF</span>
+        <div className="flex flex-wrap justify-center gap-3 text-sm font-medium">
+          <span className="px-4 py-2 bg-tech-surface/80 backdrop-blur-sm text-tech-blue rounded-xl border border-border/50">Videos: MP4, AVI, MOV, WEBM</span>
+          <span className="px-4 py-2 bg-tech-surface/80 backdrop-blur-sm text-tech-purple rounded-xl border border-border/50">Photos: JPEG, PNG, HEIC, GIF</span>
         </div>
       </div>
     </div>

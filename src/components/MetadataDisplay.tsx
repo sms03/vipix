@@ -32,31 +32,34 @@ export const MetadataDisplay = ({ metadata, fileType, fileName, className }: Met
   const getValueStyle = (type?: string) => {
     switch (type) {
       case 'technical':
-        return 'font-mono text-primary';
+        return 'font-mono text-tech-blue text-sm';
       case 'size':
-        return 'font-mono text-tech-blue';
+        return 'font-mono text-tech-purple text-sm';
       case 'time':
-        return 'font-mono text-tech-teal';
+        return 'font-mono text-primary text-sm';
       default:
         return 'text-foreground';
     }
   };
 
   return (
-    <div className={cn("space-y-6", className)}>
+    <div className={cn("space-y-8", className)}>
       {/* Header */}
-      <div className="flex items-center space-x-3 p-6 bg-gradient-card rounded-xl shadow-card-hover">
-        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-primary shadow-tech">
-          {fileType === 'video' ? (
-            <FileVideo className="w-6 h-6 text-primary-foreground" />
-          ) : (
-            <FileImage className="w-6 h-6 text-primary-foreground" />
-          )}
+      <div className="flex items-center space-x-4 p-8 bg-card/80 backdrop-blur-sm rounded-3xl shadow-elevated border border-border/50">
+        <div className="relative">
+          <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-primary shadow-tech">
+            {fileType === 'video' ? (
+              <FileVideo className="w-8 h-8 text-primary-foreground" />
+            ) : (
+              <FileImage className="w-8 h-8 text-primary-foreground" />
+            )}
+          </div>
+          <div className="absolute -inset-1 bg-gradient-primary rounded-2xl blur opacity-20"></div>
         </div>
         <div className="flex-1">
-          <h2 className="text-xl font-semibold text-foreground">{fileName}</h2>
-          <Badge variant="secondary" className="mt-1">
-            {fileType.toUpperCase()} Analysis
+          <h2 className="text-2xl font-bold text-foreground mb-2">{fileName}</h2>
+          <Badge variant="secondary" className="text-sm font-medium px-3 py-1">
+            {fileType.toUpperCase()} Analysis Complete
           </Badge>
         </div>
       </div>
@@ -64,20 +67,20 @@ export const MetadataDisplay = ({ metadata, fileType, fileName, className }: Met
       {/* Metadata Sections */}
       <div className="grid gap-6 md:grid-cols-2">
         {metadata.map((section, index) => (
-          <Card key={index} className="bg-gradient-card shadow-card-hover hover:shadow-tech-hover transition-all duration-300">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center space-x-2 text-foreground">
-                <div className="flex items-center justify-center w-8 h-8 rounded-md bg-primary/10">
+          <Card key={index} className="bg-card/80 backdrop-blur-sm shadow-elevated hover:shadow-tech-hover transition-all duration-500 border border-border/50 rounded-2xl">
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center space-x-3 text-foreground">
+                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-primary/10 border border-primary/20">
                   {section.icon}
                 </div>
-                <span className="text-lg">{section.title}</span>
+                <span className="text-xl font-semibold">{section.title}</span>
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className="space-y-4">
               {section.items.map((item, itemIndex) => (
-                <div key={itemIndex} className="flex justify-between items-center py-2 border-b border-border/50 last:border-b-0">
-                  <span className="text-muted-foreground text-sm font-medium">{item.label}</span>
-                  <span className={cn("text-sm font-semibold", getValueStyle(item.type))}>
+                <div key={itemIndex} className="flex justify-between items-center py-3 border-b border-border/30 last:border-b-0">
+                  <span className="text-muted-foreground font-medium">{item.label}</span>
+                  <span className={cn("font-semibold", getValueStyle(item.type))}>
                     {formatValue(item)}
                   </span>
                 </div>

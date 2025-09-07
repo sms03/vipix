@@ -57,27 +57,32 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Custom tech colors
+        // Premium tech colors
         tech: {
           blue: "hsl(var(--tech-blue))",
-          teal: "hsl(var(--tech-teal))",
+          purple: "hsl(var(--tech-purple))",
           dark: "hsl(var(--tech-dark))",
           gray: "hsl(var(--tech-gray))",
           light: "hsl(var(--tech-light))",
+          surface: "hsl(var(--tech-surface))",
         },
       },
       backgroundImage: {
         'gradient-primary': 'var(--gradient-primary)',
         'gradient-card': 'var(--gradient-card)',
         'gradient-subtle': 'var(--gradient-subtle)',
+        'gradient-hero': 'var(--gradient-hero)',
       },
       boxShadow: {
         'tech': 'var(--shadow-tech)',
         'card-hover': 'var(--shadow-card)',
         'tech-hover': 'var(--shadow-hover)',
+        'elevated': 'var(--shadow-elevated)',
       },
       fontFamily: {
-        mono: ['JetBrains Mono', 'Consolas', 'Monaco', 'monospace'],
+        sans: ['SF Pro Display', 'SF Pro Text', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        text: ['SF Pro Text', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        mono: ['SF Mono', 'JetBrains Mono', 'Consolas', 'Monaco', 'monospace'],
       },
       borderRadius: {
         lg: "var(--radius)",

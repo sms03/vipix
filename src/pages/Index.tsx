@@ -49,19 +49,22 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-hero">
+      <div className="container mx-auto px-4 py-12 lg:py-16">
         {/* Header */}
-        <header className="text-center mb-12">
-          <div className="flex items-center justify-center mb-6">
-            <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-primary shadow-tech">
-              <Zap className="w-8 h-8 text-primary-foreground" />
+        <header className="text-center mb-16">
+          <div className="flex items-center justify-center mb-8">
+            <div className="relative">
+              <div className="flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-primary shadow-elevated">
+                <Zap className="w-10 h-10 text-primary-foreground" />
+              </div>
+              <div className="absolute -inset-1 bg-gradient-primary rounded-3xl blur opacity-20"></div>
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight">
             Media Analyzer
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-text">
             Extract detailed technical information from your videos and photos. 
             Get metadata, EXIF data, and comprehensive file analysis in seconds.
           </p>
@@ -69,19 +72,21 @@ const Index = () => {
 
         {!selectedFile ? (
           /* Upload Section */
-          <div className="max-w-2xl mx-auto">
-            <FileUpload onFileSelect={handleFileSelect} />
+          <div className="max-w-3xl mx-auto">
+            <div className="bg-card/50 backdrop-blur-sm rounded-3xl shadow-elevated border border-border/50 p-8">
+              <FileUpload onFileSelect={handleFileSelect} />
+            </div>
           </div>
         ) : (
           /* Analysis Section */
           <div className="space-y-8">
             {/* Action Bar */}
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-semibold text-foreground">Analysis Results</h2>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-3xl font-bold text-foreground">Analysis Results</h2>
               <Button 
                 onClick={handleReset}
                 variant="outline"
-                className="flex items-center space-x-2"
+                className="flex items-center space-x-2 h-11 px-6 rounded-xl font-medium transition-all duration-200 hover:shadow-tech-hover"
               >
                 <RotateCcw className="w-4 h-4" />
                 <span>Analyze New File</span>
@@ -90,23 +95,25 @@ const Index = () => {
 
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Media Preview */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">Preview</h3>
-                <MediaPreview
-                  file={selectedFile}
-                  type={selectedFile.type.startsWith('video/') ? 'video' : 'image'}
-                  className="aspect-video"
-                />
+              <div className="space-y-6">
+                <h3 className="text-xl font-semibold text-foreground">Preview</h3>
+                <div className="bg-card/80 backdrop-blur-sm rounded-2xl shadow-elevated border border-border/50 overflow-hidden">
+                  <MediaPreview
+                    file={selectedFile}
+                    type={selectedFile.type.startsWith('video/') ? 'video' : 'image'}
+                    className="aspect-video"
+                  />
+                </div>
               </div>
 
               {/* Analysis Status */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">Technical Details</h3>
+              <div className="space-y-6">
+                <h3 className="text-xl font-semibold text-foreground">Technical Details</h3>
                 {isAnalyzing ? (
-                  <div className="flex items-center justify-center p-12 bg-gradient-card rounded-xl shadow-card-hover">
+                  <div className="flex items-center justify-center p-16 bg-card/80 backdrop-blur-sm rounded-2xl shadow-elevated border border-border/50">
                     <div className="text-center">
-                      <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-4" />
-                      <p className="text-muted-foreground">Analyzing file...</p>
+                      <Loader2 className="w-10 h-10 animate-spin text-primary mx-auto mb-6" />
+                      <p className="text-muted-foreground text-lg font-medium">Analyzing file...</p>
                     </div>
                   </div>
                 ) : analysisResult ? (
@@ -118,8 +125,8 @@ const Index = () => {
                     />
                   </div>
                 ) : error ? (
-                  <div className="p-6 bg-destructive/10 border border-destructive/20 rounded-xl">
-                    <p className="text-destructive font-medium">Analysis failed: {error}</p>
+                  <div className="p-6 bg-destructive/10 border border-destructive/20 rounded-2xl">
+                    <p className="text-destructive font-medium text-lg">Analysis failed: {error}</p>
                   </div>
                 ) : null}
               </div>
