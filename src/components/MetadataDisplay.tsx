@@ -45,7 +45,7 @@ export const MetadataDisplay = ({ metadata, fileType, fileName, className }: Met
   return (
   <div className={cn("space-y-8 compact:space-y-6", className)}>
       {/* Header */}
-  <div className="flex items-center space-x-4 p-8 compact:p-6 bg-card/80 backdrop-blur-sm rounded-3xl shadow-elevated border border-border/50">
+  <div className="flex items-center space-x-4 p-8 compact:p-6 bg-card/80 backdrop-blur-sm rounded-3xl border border-border/50">
         <div className="relative">
           <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-primary shadow-tech">
             {fileType === 'video' ? (
@@ -67,7 +67,7 @@ export const MetadataDisplay = ({ metadata, fileType, fileName, className }: Met
       {/* Metadata Sections */}
       <div className="grid gap-6 compact:gap-5 md:grid-cols-2">
         {metadata.map((section, index) => (
-          <Card key={index} className="bg-card/80 backdrop-blur-sm shadow-elevated hover:shadow-tech-hover transition-all duration-500 border border-border/50 rounded-2xl compact:rounded-xl">
+          <Card key={index} className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl compact:rounded-xl transition-all duration-500">
             <CardHeader className="pb-4 compact:pb-3">
               <CardTitle className="flex items-center space-x-3 text-foreground">
                 <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-primary/10 border border-primary/20">
