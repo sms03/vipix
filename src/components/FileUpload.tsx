@@ -38,15 +38,15 @@ export const FileUpload = ({ onFileSelect, className }: FileUploadProps) => {
     >
       <input {...getInputProps()} />
       <div className="flex flex-col items-center justify-center p-16 text-center">
-        <div className="mb-8 relative">
+        <div className="mb-8 relative flex justify-center">
           <div className="flex items-center justify-center w-24 h-24 rounded-3xl bg-gradient-primary shadow-elevated mb-6 group-hover:scale-110 transition-all duration-500">
             <Upload className="w-10 h-10 text-primary-foreground" />
           </div>
-          <div className="absolute -bottom-3 -right-3 flex space-x-2">
-            <div className="w-8 h-8 rounded-xl bg-tech-blue/10 backdrop-blur-sm flex items-center justify-center border border-tech-blue/20">
+          <div className="absolute -bottom-2 -right-2 flex items-center space-x-1">
+            <div className="w-8 h-8 rounded-xl bg-tech-blue/10 backdrop-blur-sm flex items-center justify-center border border-tech-blue/20 shadow-sm">
               <FileVideo className="w-4 h-4 text-tech-blue" />
             </div>
-            <div className="w-8 h-8 rounded-xl bg-tech-purple/10 backdrop-blur-sm flex items-center justify-center border border-tech-purple/20">
+            <div className="w-8 h-8 rounded-xl bg-tech-purple/10 backdrop-blur-sm flex items-center justify-center border border-tech-purple/20 shadow-sm">
               <FileImage className="w-4 h-4 text-tech-purple" />
             </div>
           </div>
