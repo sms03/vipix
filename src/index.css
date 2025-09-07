@@ -304,6 +304,27 @@ body::-webkit-scrollbar-corner { background: transparent; }
 .scrollbar-hide { scrollbar-width: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
+/* === Fully custom overlay scrollbar system === */
+.custom-scroll-wrapper { --thumb-width: 6px; --thumb-hover-width: 8px; }
+.custom-scroll-container { overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; }
+.custom-scroll-container::-webkit-scrollbar { display: none; }
+.custom-scroll-track { position: absolute; top: 4px; bottom: 4px; right: 0; width: 14px; pointer-events: none; }
+.custom-scroll-thumb {
+  position: absolute; right: 4px; top: 0; width: var(--thumb-width);
+  background: linear-gradient(180deg, hsl(var(--primary) / 0.85), hsl(var(--tech-purple) / 0.85));
+  border-radius: 999px; box-shadow: 0 2px 8px -2px hsl(var(--primary) / 0.5), 0 0 0 1px hsl(var(--primary) / 0.4) inset;
+  opacity: 0.25; transition: opacity 160ms ease, width 160ms ease, background 160ms ease;
+  pointer-events: auto; cursor: grab;
+}
+.custom-scroll-wrapper:hover .custom-scroll-thumb, .custom-scroll-thumb.dragging { opacity: 0.85; }
+.custom-scroll-thumb:hover { width: var(--thumb-hover-width); }
+.custom-scroll-thumb:active { cursor: grabbing; }
+.dragging.custom-scroll-thumb { width: var(--thumb-hover-width); }
+@media (prefers-color-scheme: dark) {
+  .custom-scroll-thumb { background: linear-gradient(180deg, hsl(var(--tech-purple) / 0.9), hsl(var(--primary) / 0.9)); box-shadow: 0 2px 10px -2px hsl(var(--tech-purple) / 0.6), 0 0 0 1px hsl(var(--primary) / 0.5) inset; }
+}
+.mobile .custom-scroll-track { display: none; }
+
 /* Scaled UI smoothing */
 .transform-gpu { transform-origin: top center; }
 
