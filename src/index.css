@@ -142,6 +142,8 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground font-text antialiased;
     font-feature-settings: 'rlig' 1, 'calt' 1;
+    /* Force vertical scrollbar so custom styling is always visible (even if content fits) */
+    overflow-y: scroll;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -182,6 +184,18 @@ All colors MUST be HSL.
 body {
   scrollbar-color: hsl(var(--primary) / 0.45) hsl(var(--muted) / 0.25);
   scrollbar-width: thin; /* Firefox */
+}
+.scrollbar-stable { scrollbar-gutter: stable; }
+
+/* Ensure explicit fallback colors for thin variant if host background differs */
+.scrollbar-tech-thin { scrollbar-color: hsl(var(--primary) / 0.55) hsl(var(--muted) / 0.15); }
+
+/* Force display in WebKit if nested inside transforms */
+.scrollbar-tech-thin { overscroll-behavior: contain; }
+
+/* Provide narrower geometry on very small viewports */
+@media (max-width: 640px) {
+  .scrollbar-tech-thin::-webkit-scrollbar { width: 8px; }
 }
 
 /* Base track & thumb styling (WebKit) */
