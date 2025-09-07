@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="/vipix.png" alt="Vipix Logo" width="140" height="140" />
+	<img src="public/vipix.png" alt="Vipix Logo" width="140" height="140" />
 	<h1>Vipix</h1>
 	<p><strong>High‑fidelity Video & Image Metadata Analyzer</strong><br/>Fast. Visual. Precise.</p>
 
