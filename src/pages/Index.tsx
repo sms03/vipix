@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FileUpload } from '@/components/FileUpload';
 import { MediaPreview } from '@/components/MediaPreview';
 import { MetadataDisplay, createVideoMetadata, createImageMetadata } from '@/components/MetadataDisplay';
@@ -55,6 +55,16 @@ const Index = () => {
       return createImageMetadata(analysisResult.metadata, analysisResult.exifData);
     }
   };
+
+  // Prevent body scrolling when showing analysis results (avoid double scrollbar with internal panel)
+  useEffect(() => {
+    if (analysisResult) {
+      document.body.classList.add('no-body-scroll');
+    } else {
+      document.body.classList.remove('no-body-scroll');
+    }
+    return () => { document.body.classList.remove('no-body-scroll'); };
+  }, [analysisResult]);
 
   return (
   <div className={"relative flex flex-col min-h-dvh bg-transparent overflow-hidden " + (compact ? 'compact ' : '') + (isMobile ? ' mobile' : '')}>
