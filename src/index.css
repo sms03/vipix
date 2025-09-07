@@ -170,6 +170,23 @@ All colors MUST be HSL.
   font-size: clamp(1rem, 2vw, 1.375rem);
 }
 
+/* Mobile mode (set by adding .mobile class to root container) */
+.mobile .hero-title { font-size: clamp(1.9rem, 7vw, 2.6rem); }
+.mobile .hero-sub { font-size: 0.95rem; }
+.mobile .vh-adapt { padding-top: 1rem !important; padding-bottom: 1.5rem !important; }
+.mobile .action-bar h2 { font-size: 1.25rem; }
+.mobile .scrollbar-tech-thin::-webkit-scrollbar { width: 8px; }
+.mobile .scrollbar-tech-thin::-webkit-scrollbar-thumb { border-width: 2px; }
+.mobile .hero-title img { max-width: 7rem; }
+.mobile .hero-title span:last-child { font-size: 2.1rem; }
+
+/* Prevent horizontal scrolling on narrow devices */
+html, body { overflow-x: hidden; }
+
+/* Tighten card padding in metadata on mobile */
+.mobile .MetadataDisplay .p-8 { padding:1.5rem !important; }
+.mobile .MetadataDisplay .space-y-8 > * + * { margin-top:2rem; }
+
 .action-bar {
   min-height: 3rem;
 }
