@@ -4,10 +4,9 @@ import { MediaPreview } from '@/components/MediaPreview';
 import { MetadataDisplay, createVideoMetadata, createImageMetadata } from '@/components/MetadataDisplay';
 import { useMediaAnalysis } from '@/hooks/useMediaAnalysis';
 import { Button } from '@/components/ui/button';
-import { Loader2, RotateCcw, Zap } from 'lucide-react';
+import { Loader2, RotateCcw } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useCompact } from '@/hooks/use-compact';
-import PixelBlast from '@/components/background/PixelBlast';
 import { useViewportScale } from '@/hooks/useViewportScale';
 
 const Index = () => {
@@ -16,7 +15,7 @@ const Index = () => {
   const { analyzeFile, isAnalyzing, error } = useMediaAnalysis();
   const { toast } = useToast();
   const compact = useCompact();
-  const scale = useViewportScale(1280, 950, 0.65);
+  const scale = useViewportScale(1280, 800, 0.65);
 
   const handleFileSelect = async (file: File) => {
     setSelectedFile(file);
@@ -54,50 +53,30 @@ const Index = () => {
   };
 
   return (
-    <div className={"relative flex flex-col min-h-dvh bg-background overflow-hidden " + (compact ? 'compact' : '')}>
-      <div className="absolute inset-0 z-0 opacity-80">
-        <PixelBlast
-          variant="circle"
-          pixelSize={6}
-          color="#4B3A99" // darker tone
-          patternScale={3}
-          patternDensity={1.2}
-          pixelSizeJitter={0.5}
-          enableRipples
-          rippleSpeed={0.4}
-          rippleThickness={0.12}
-          rippleIntensityScale={1.5}
-          liquid
-            liquidStrength={0.12}
-            liquidRadius={1.2}
-            liquidWobbleSpeed={5}
-          speed={1.15} // faster animation
-          edgeFade={0.25}
-          transparent
-          className="w-full h-full pointer-events-auto"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/55 to-background/80 backdrop-blur-[1.5px] pointer-events-none"
-          aria-hidden="true"
-        />
-      </div>
+    <div className={"relative flex flex-col min-h-dvh bg-transparent overflow-hidden " + (compact ? 'compact' : '')}>
       <div className={"relative z-10 flex-1 container mx-auto px-4 py-8 md:py-12 lg:py-16 flex flex-col gap-6 md:gap-10 vh-adapt origin-top " + (compact ? 'py-4 gap-4 md:py-6' : '')}
        style={{ '--ui-scale': scale } as React.CSSProperties}>
     <div className="transform-gpu" style={{ scale: 'var(--ui-scale)' }}>
   {!selectedFile ? (
           <div className={"flex-1 flex flex-col items-center justify-center text-center gap-8 md:gap-12 " + (compact ? 'gap-6 md:gap-8' : '')}>
-            {/* Hero Icon */}
-            <div className="flex items-center justify-center" aria-hidden>
-              <div className="relative">
-                <div className={"flex items-center justify-center rounded-3xl bg-gradient-primary shadow-elevated transition-all " + (compact ? 'w-16 h-16' : 'w-20 h-20 md:w-24 md:h-24')}>
-                  <Zap className={compact ? 'w-8 h-8 text-primary-foreground' : 'w-10 h-10 md:w-12 md:h-12 text-primary-foreground'} />
-                </div>
-                <div className="absolute -inset-1 bg-gradient-primary rounded-3xl blur opacity-20"></div>
-              </div>
-            </div>
             <div className="space-y-6 max-w-4xl mx-auto px-2">
-              <h1 className={"hero-title font-bold tracking-tight " + (compact ? 'scale-[0.85]' : '')}>
-                Media Analyzer
+              <h1 className={"hero-title font-bold tracking-tight flex flex-col items-center gap-4 " + (compact ? 'scale-[0.85] gap-3' : '')}>
+                <span className="sr-only">Vipix</span>
+                {/* Brand Logo in circular frame */}
+                <div className={(compact ? 'w-28 h-28' : 'w-40 h-40 md:w-48 md:h-48') + ' relative rounded-full p-[3px] bg-gradient-to-br from-white/40 via-white/15 to-transparent shadow-[0_0_0_1px_rgba(255,255,255,0.15)] backdrop-blur-sm'}>
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/25 via-white/10 to-transparent blur-xl opacity-40" aria-hidden></div>
+                  <div className="w-full h-full rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center overflow-hidden ring-1 ring-white/15">
+                    <img
+                      src="/vipix.png"
+                      alt="Vipix logo"
+                      className="w-full h-full object-contain select-none pointer-events-none"
+                      draggable={false}
+                    />
+                  </div>
+                </div>
+                <span className="font-extrabold tracking-tight leading-tight text-balance text-black">
+                  Vipix
+                </span>
               </h1>
               <p className={"hero-sub text-muted-foreground max-w-3xl mx-auto leading-relaxed font-text " + (compact ? 'opacity-90' : '')}>
                 Extract detailed technical information from your videos and photos. Get metadata, EXIF data, and comprehensive file analysis in seconds.
@@ -140,7 +119,7 @@ const Index = () => {
               {/* Technical Details */}
               <div className="flex-1 flex flex-col gap-4 min-h-0">
                 <h3 className={compact ? 'text-base md:text-lg font-semibold text-foreground shrink-0' : 'text-lg md:text-xl font-semibold text-foreground shrink-0'}>Technical Details</h3>
-                <div className={"flex-1 overflow-auto details-scroll pr-1 " + (compact ? 'text-sm' : '')}>
+                <div className={"flex-1 overflow-auto details-scroll scrollbar-tech-thin pr-1 " + (compact ? 'text-sm' : '')}>
                   {isAnalyzing ? (
                     <div className="flex items-center justify-center h-full bg-card/80 backdrop-blur-sm rounded-2xl shadow-elevated border border-border/50">
                       <div className="text-center p-8">
