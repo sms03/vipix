@@ -5,13 +5,14 @@ interface CustomScrollAreaProps {
   children: React.ReactNode;
   className?: string;
   contentClassName?: string;
+  showTrack?: boolean; // whether to render the custom scrollbar track/thumb
 }
 
 /**
  * Fully custom vertical scrollbar overlay.
  * Hides native scrollbar (Chrome/Firefox) and renders gradient thumb.
  */
-export const CustomScrollArea: React.FC<CustomScrollAreaProps> = ({ children, className, contentClassName }) => {
+export const CustomScrollArea: React.FC<CustomScrollAreaProps> = ({ children, className, contentClassName, showTrack = true }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const thumbRef = useRef<HTMLDivElement>(null);
@@ -79,17 +80,19 @@ export const CustomScrollArea: React.FC<CustomScrollAreaProps> = ({ children, cl
 
   return (
     <div ref={wrapperRef} className={cn('custom-scroll-wrapper relative h-full', className)}>
-      <div ref={scrollRef} className={cn('custom-scroll-container h-full pr-3', contentClassName)}>
+      <div ref={scrollRef} className={cn('custom-scroll-container h-full', showTrack && 'pr-3', contentClassName)}>
         {children}
       </div>
-      <div ref={trackRef} className={cn('custom-scroll-track')} aria-hidden>
-        <div
-          ref={thumbRef}
-          className={cn('custom-scroll-thumb', dragging && 'dragging')}
-          style={{ height: thumbHeight }}
-          onMouseDown={(e) => { e.preventDefault(); setDragging(true); }}
-        />
-      </div>
+      {showTrack && (
+        <div ref={trackRef} className={cn('custom-scroll-track')} aria-hidden>
+          <div
+            ref={thumbRef}
+            className={cn('custom-scroll-thumb', dragging && 'dragging')}
+            style={{ height: thumbHeight }}
+            onMouseDown={(e) => { e.preventDefault(); setDragging(true); }}
+          />
+        </div>
+      )}
     </div>
   );
 };
