@@ -43,9 +43,9 @@ export const MetadataDisplay = ({ metadata, fileType, fileName, className }: Met
   };
 
   return (
-    <div className={cn("space-y-8", className)}>
+  <div className={cn("space-y-8 compact:space-y-6", className)}>
       {/* Header */}
-      <div className="flex items-center space-x-4 p-8 bg-card/80 backdrop-blur-sm rounded-3xl shadow-elevated border border-border/50">
+  <div className="flex items-center space-x-4 p-8 compact:p-6 bg-card/80 backdrop-blur-sm rounded-3xl shadow-elevated border border-border/50">
         <div className="relative">
           <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-primary shadow-tech">
             {fileType === 'video' ? (
@@ -65,10 +65,10 @@ export const MetadataDisplay = ({ metadata, fileType, fileName, className }: Met
       </div>
 
       {/* Metadata Sections */}
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 compact:gap-5 md:grid-cols-2">
         {metadata.map((section, index) => (
-          <Card key={index} className="bg-card/80 backdrop-blur-sm shadow-elevated hover:shadow-tech-hover transition-all duration-500 border border-border/50 rounded-2xl">
-            <CardHeader className="pb-4">
+          <Card key={index} className="bg-card/80 backdrop-blur-sm shadow-elevated hover:shadow-tech-hover transition-all duration-500 border border-border/50 rounded-2xl compact:rounded-xl">
+            <CardHeader className="pb-4 compact:pb-3">
               <CardTitle className="flex items-center space-x-3 text-foreground">
                 <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-primary/10 border border-primary/20">
                   {section.icon}
@@ -76,9 +76,9 @@ export const MetadataDisplay = ({ metadata, fileType, fileName, className }: Met
                 <span className="text-xl font-semibold">{section.title}</span>
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 compact:space-y-3">
               {section.items.map((item, itemIndex) => (
-                <div key={itemIndex} className="flex justify-between items-center py-3 border-b border-border/30 last:border-b-0">
+                <div key={itemIndex} className="flex justify-between items-center py-3 compact:py-2.5 border-b border-border/30 last:border-b-0">
                   <span className="text-muted-foreground font-medium">{item.label}</span>
                   <span className={cn("font-semibold", getValueStyle(item.type))}>
                     {formatValue(item)}
