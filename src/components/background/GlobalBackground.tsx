@@ -5,8 +5,12 @@ import PixelBlast from './PixelBlast';
    Place once at the root (e.g. in App.tsx). */
 const GlobalBackground: React.FC = () => {
   // Optional: could read prefers-reduced-motion here and early-return null.
+  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    return <div className="fixed inset-0 -z-10 bg-gradient-to-br from-background via-background/95 to-background" />;
+  }
   return (
-    <div className="fixed inset-0 -z-10">
+    <div className="fixed inset-0 -z-10 will-change-transform">
       <PixelBlast
         variant="circle"
         pixelSize={6}
