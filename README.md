@@ -9,7 +9,7 @@
 		<a href="#tech-stack">Stack</a> ·
 		<a href="#roadmap">Roadmap</a>
 	</p>
-
+    <div>
 	<p>
 		<img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff" />
 		<img alt="React" src="https://img.shields.io/badge/React-149ECA?logo=react&logoColor=fff" />
