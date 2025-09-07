@@ -80,8 +80,8 @@ export default {
         'elevated': 'var(--shadow-elevated)',
       },
       fontFamily: {
-        sans: ['SF Pro Display', 'SF Pro Text', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
-        text: ['SF Pro Text', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        sans: ['Roboto', 'SF Pro Display', 'SF Pro Text', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        text: ['Roboto', 'SF Pro Text', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
         mono: ['SF Mono', 'JetBrains Mono', 'Consolas', 'Monaco', 'monospace'],
       },
       borderRadius: {
