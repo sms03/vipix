@@ -426,7 +426,8 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
       });
       renderer.domElement.style.width = '100%';
       renderer.domElement.style.height = '100%';
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  // Cap DPR for performance
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
       container.appendChild(renderer.domElement);
       const uniforms = {
         uResolution: { value: new THREE.Vector2(0, 0) },
@@ -567,9 +568,13 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
       };
       window.addEventListener('pointerdown', globalPointerDown, { passive: true });
       window.addEventListener('pointermove', globalPointerMove, { passive: true });
+      // Visibility / tab pause management (use local closure variables; ref not yet assigned)
+      let pageVisible = true;
+      const visibilityHandler = () => { pageVisible = !document.hidden; };
+      document.addEventListener('visibilitychange', visibilityHandler);
       let raf = 0;
       const animate = () => {
-        if (autoPauseOffscreen && !visibilityRef.current.visible) {
+        if ((autoPauseOffscreen && !visibilityRef.current.visible) || !pageVisible) {
           raf = requestAnimationFrame(animate);
           return;
         }
@@ -589,8 +594,8 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
         } else renderer.render(scene, camera);
         raf = requestAnimationFrame(animate);
       };
-      raf = requestAnimationFrame(animate);
-      threeRef.current = {
+  raf = requestAnimationFrame(animate);
+  threeRef.current = {
         renderer,
         scene,
         camera,
@@ -606,8 +611,8 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
         touch,
         liquidEffect
       };
-  // Store cleanup extras on ref for removal
-  (threeRef.current as any)._globalListeners = { globalPointerDown, globalPointerMove };
+  (threeRef.current as any)._cleanup = { globalPointerDown, globalPointerMove, visibilityHandler };
+  // Listeners tracked via closure; no premature ref mutation beyond cleanup store
     } else {
       const t = threeRef.current!;
       t.uniforms.uShapeType.value = SHAPE_MAP[variant] ?? 0;
@@ -633,15 +638,17 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
     }
     prevConfigRef.current = cfg;
     return () => {
-      if (threeRef.current && mustReinit) return;
+  if (threeRef.current && mustReinit) return;
       if (!threeRef.current) return;
       const t = threeRef.current;
       t.resizeObserver?.disconnect();
       cancelAnimationFrame(t.raf!);
-      const gls = (t as any)._globalListeners;
+      // Remove listeners (guard existence via stored _globalListeners on instance)
+      const gls = (t as any)._cleanup;
       if (gls) {
-        window.removeEventListener('pointerdown', gls.globalPointerDown as any);
-        window.removeEventListener('pointermove', gls.globalPointerMove as any);
+        if (gls.globalPointerDown) window.removeEventListener('pointerdown', gls.globalPointerDown);
+        if (gls.globalPointerMove) window.removeEventListener('pointermove', gls.globalPointerMove);
+        if (gls.visibilityHandler) document.removeEventListener('visibilitychange', gls.visibilityHandler);
       }
       t.quad?.geometry.dispose();
       t.material.dispose();
