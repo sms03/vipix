@@ -38,27 +38,6 @@ Vipix extracts rich technical metadata from videos and photos (containers, codec
 - Dark glass aesthetic with performance‑minded layering
 - Robust error + toast feedback system
 
-## Tech Stack
-
-| Layer | Tools |
-|-------|-------|
-| Core | React + TypeScript |
-| Build | Vite |
-| Styling | Tailwind CSS + custom tokens + shadcn/ui components |
-| UI Enhancements | Custom hooks (scaling, compact mode, toasts) |
-| Graphics | Three.js + postprocessing (shader driven background) |
-
-## Quick Start
-
-```bash
-git clone <repo-url>
-cd vipix
-npm install    # or pnpm i / bun i / yarn
-npm run dev
-```
-
-Then open the local dev URL printed in the terminal.
-
 ## Usage
 
 1. Open the app.
