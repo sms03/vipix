@@ -4,9 +4,7 @@
 	<p><strong>High‑fidelity Video & Image Metadata Analyzer</strong><br/>Fast. Visual. Precise.</p>
     <div>
 	<p>
-		<a href="#quick-start">Quick Start</a> ·
 		<a href="#features">Features</a> ·
-		<a href="#tech-stack">Stack</a> ·
 		<a href="#roadmap">Roadmap</a>
 	</p>
     <div>
