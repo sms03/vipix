@@ -5,6 +5,7 @@ import { MetadataDisplay, createVideoMetadata, createImageMetadata } from '@/com
 import { useMediaAnalysis } from '@/hooks/useMediaAnalysis';
 import { Button } from '@/components/ui/button';
 import { Loader2, RotateCcw } from 'lucide-react';
+import CustomScrollArea from '@/components/ui/CustomScrollArea';
 import { useToast } from '@/hooks/use-toast';
 import { useCompact } from '@/hooks/use-compact';
 import { useViewportScale } from '@/hooks/useViewportScale';
@@ -122,7 +123,7 @@ const Index = () => {
               {/* Technical Details */}
               <div className="flex-1 flex flex-col gap-4 min-h-0">
                 <h3 className={compact ? 'text-base md:text-lg font-semibold text-foreground shrink-0' : 'text-lg md:text-xl font-semibold text-foreground shrink-0'}>Technical Details</h3>
-                <div className={"flex-1 overflow-y-scroll details-scroll scrollbar-tech-thin scrollbar-stable pr-1 min-h-0 " + (compact ? 'text-sm' : '')}>
+                <CustomScrollArea className={"flex-1 min-h-0 " + (compact ? 'text-sm' : '')}>
                   {isAnalyzing ? (
                     <div className="flex items-center justify-center h-full bg-card/80 backdrop-blur-sm rounded-2xl shadow-elevated border border-border/50">
                       <div className="text-center p-8">
@@ -142,7 +143,7 @@ const Index = () => {
                       <p className="text-destructive font-medium text-lg">Analysis failed: {error}</p>
                     </div>
                   ) : null}
-                </div>
+                </CustomScrollArea>
               </div>
             </div>
           </div>
