@@ -28,39 +28,78 @@ export const FileUpload = ({ onFileSelect, className }: FileUploadProps) => {
     <div
       {...getRootProps()}
       className={cn(
-        "relative overflow-hidden rounded-3xl border-2 border-dashed transition-all duration-500 cursor-pointer group",
-        "bg-card/50 backdrop-blur-sm shadow-elevated hover:shadow-tech-hover",
-        isDragActive 
-          ? "border-primary bg-gradient-primary/5 scale-[1.02]" 
-          : "border-border/50 hover:border-primary/60",
+        "group relative cursor-pointer select-none",
+        "[--ring-color:theme(colors.primary.DEFAULT)]",
         className
       )}
+      aria-label="Upload media file"
     >
-      <input {...getInputProps()} />
-      <div className="flex flex-col items-center justify-center p-16 text-center">
-        <div className="mb-8 relative flex justify-center">
-          <div className="flex items-center justify-center w-24 h-24 rounded-3xl bg-gradient-primary shadow-elevated mb-6 group-hover:scale-110 transition-all duration-500">
-            <Upload className="w-10 h-10 text-primary-foreground" />
-          </div>
-          <div className="absolute -bottom-2 -right-2 flex items-center space-x-1">
-            <div className="w-8 h-8 rounded-xl bg-tech-blue/10 backdrop-blur-sm flex items-center justify-center border border-tech-blue/20 shadow-sm">
-              <FileVideo className="w-4 h-4 text-tech-blue" />
+      {/* Gradient border frame */}
+      <div className={cn(
+        "relative rounded-3xl p-[1px] transition-all duration-500",
+        "before:absolute before:inset-0 before:rounded-3xl before:p-[1px] before:bg-gradient-to-br before:from-primary/70 before:via-tech-purple/60 before:to-primary/40 before:opacity-60 before:blur-sm before:pointer-events-none",
+        isDragActive && "before:opacity-90 scale-[1.01]"
+      )}>
+        <div className={cn(
+          "relative h-full w-full rounded-[calc(theme(borderRadius.3xl)_-_2px)]",
+          "bg-gradient-to-br from-card/70 via-card/50 to-card/30 backdrop-blur-xl",
+          "shadow-elevated overflow-hidden",
+          "transition-all duration-500",
+          isDragActive ? "ring-2 ring-primary/60" : "hover:ring-1 hover:ring-primary/30"
+        )}>
+          {/* Subtle pattern */}
+          <div className="pointer-events-none absolute inset-0 opacity-[0.08] bg-[radial-gradient(circle_at_25%_25%,theme(colors.primary.DEFAULT)/0.7,transparent_60%)]" />
+
+          <input {...getInputProps()} />
+
+            {/* Content */}
+            <div className="relative z-10 flex flex-col items-center justify-center gap-8 px-10 py-16 md:py-20 text-center min-h-[410px]">
+              {/* Icon cluster */}
+              <div className="relative flex items-center justify-center">
+                <div className={cn(
+                  "flex items-center justify-center rounded-2xl bg-gradient-primary shadow-elevated transition-all",
+                  "w-24 h-24 md:w-28 md:h-28 group-hover:scale-105",
+                  isDragActive && "scale-110"
+                )}>
+                  <Upload className="w-11 h-11 md:w-12 md:h-12 text-primary-foreground" />
+                </div>
+                <div className="absolute -bottom-3 flex gap-2">
+                  <div className="flex items-center justify-center w- nine h-9 rounded-xl bg-tech-blue/15 border border-tech-blue/30 backdrop-blur-md shadow-sm">
+                    <FileVideo className="w-4 h-4 text-tech-blue" />
+                  </div>
+                  <div className="flex items-center justify-center w- nine h-9 rounded-xl bg-tech-purple/15 border border-tech-purple/30 backdrop-blur-md shadow-sm">
+                    <FileImage className="w-4 h-4 text-tech-purple" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Title & Subtitle */}
+              <div className="space-y-3 max-w-xl mx-auto">
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
+                  {isDragActive ? 'Drop to Analyze' : 'Upload Media'}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed text-base md:text-lg font-text">
+                  Drag & drop a video or photo, or click to browse. We extract codecs, EXIF, resolution and more.
+                </p>
+              </div>
+
+              {/* File type badges */}
+              <div className="flex flex-wrap justify-center gap-3 md:gap-4 font-medium text-xs md:text-sm">
+                <span className="px-4 py-2 rounded-xl bg-primary/10 border border-primary/25 text-primary tracking-wide backdrop-blur-sm">
+                  Video: MP4 • MOV • WEBM
+                </span>
+                <span className="px-4 py-2 rounded-xl bg-tech-purple/10 border border-tech-purple/30 text-tech-purple tracking-wide backdrop-blur-sm">
+                  Image: JPG • PNG • HEIC • GIF
+                </span>
+              </div>
             </div>
-            <div className="w-8 h-8 rounded-xl bg-tech-purple/10 backdrop-blur-sm flex items-center justify-center border border-tech-purple/20 shadow-sm">
-              <FileImage className="w-4 h-4 text-tech-purple" />
-            </div>
-          </div>
-        </div>
-        
-        <h3 className="text-2xl font-bold text-foreground mb-4">
-          {isDragActive ? 'Drop your file here' : 'Upload Media File'}
-        </h3>
-        <p className="text-muted-foreground mb-8 max-w-md text-lg leading-relaxed">
-          Drag and drop your video or photo file, or click to browse and analyze
-        </p>
-        <div className="flex flex-wrap justify-center gap-3 text-sm font-medium">
-          <span className="px-4 py-2 bg-tech-surface/80 backdrop-blur-sm text-tech-blue rounded-xl border border-border/50">Videos: MP4, AVI, MOV, WEBM</span>
-          <span className="px-4 py-2 bg-tech-surface/80 backdrop-blur-sm text-tech-purple rounded-xl border border-border/50">Photos: JPEG, PNG, HEIC, GIF</span>
+
+            {/* Drag overlay */}
+            <div className={cn(
+              "pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300",
+              "bg-gradient-to-br from-primary/15 via-tech-purple/15 to-primary/10 backdrop-blur-sm",
+              isDragActive && "opacity-100"
+            )} />
         </div>
       </div>
     </div>
