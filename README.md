@@ -1,73 +1,94 @@
-# Welcome to your Lovable project
+<div align="center">
+	<img src="/vipix.png" alt="Vipix Logo" width="140" height="140" />
+	<h1>Vipix</h1>
+	<p><strong>High‑fidelity Video & Image Metadata Analyzer</strong><br/>Fast. Visual. Precise.</p>
 
-## Project info
+	<p>
+		<a href="#quick-start">Quick Start</a> ·
+		<a href="#features">Features</a> ·
+		<a href="#tech-stack">Stack</a> ·
+		<a href="#roadmap">Roadmap</a>
+	</p>
 
-**URL**: https://lovable.dev/projects/2919f462-3982-4487-850a-4ee09a978690
+	<p>
+		<img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff" />
+		<img alt="React" src="https://img.shields.io/badge/React-149ECA?logo=react&logoColor=fff" />
+		<img alt="Vite" src="https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff" />
+		<img alt="Tailwind" src="https://img.shields.io/badge/Tailwind-38B2AC?logo=tailwindcss&logoColor=fff" />
+		<img alt="shadcn/ui" src="https://img.shields.io/badge/UI-shadcn--ui-000?logo=radixui&logoColor=fff" />
+		<img alt="Three.js" src="https://img.shields.io/badge/Three.js-000000?logo=three.js&logoColor=fff" />
+	</p>
+</div>
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## Overview
 
-**Use Lovable**
+Vipix extracts rich technical metadata from videos and photos (containers, codecs, resolution, bitrate, color, EXIF & more) and presents it in a clean, responsive interface backed by a realtime procedural WebGL background.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2919f462-3982-4487-850a-4ee09a978690) and start prompting.
+## Features
 
-Changes made via Lovable will be committed automatically to this repo.
+- Drag & drop or click to analyze media
+- Video & image pathway with adaptive metadata sections
+- EXIF extraction for photos (camera, lens, GPS if present)
+- Clean technical breakdown: codecs, dimensions, duration, frame rate, aspect, bitrates
+- Accessible responsive layout (scales down intelligently, compact mode)
+- Custom scrollbars + refined typography
+- Procedural GPU background (PixelBlast) with interactive ripple effects
+- Dark glass aesthetic with performance‑minded layering
+- Robust error + toast feedback system
 
-**Use your preferred IDE**
+## Tech Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+| Layer | Tools |
+|-------|-------|
+| Core | React + TypeScript |
+| Build | Vite |
+| Styling | Tailwind CSS + custom tokens + shadcn/ui components |
+| UI Enhancements | Custom hooks (scaling, compact mode, toasts) |
+| Graphics | Three.js + postprocessing (shader driven background) |
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Quick Start
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+git clone <repo-url>
+cd vipix
+npm install    # or pnpm i / bun i / yarn
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Then open the local dev URL printed in the terminal.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Usage
 
-**Use GitHub Codespaces**
+1. Open the app.
+2. Drop a video (MP4, MOV, MKV…) or image (JPEG, PNG, WebP, etc.).
+3. Wait for analysis (progress indicator shown).
+4. Browse categorized technical + EXIF data.
+5. Click "Analyze New File" to reset.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Accessibility & Performance
 
-## What technologies are used for this project?
+- Layout scales using a dynamic transform to fit smaller viewports.
+- Interactive background separated from content for clarity.
+- (Planned) Reduced motion fallback for GPU effects.
 
-This project is built with:
+## Roadmap
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- [ ] Reduced‑motion / low‑power background fallback
+- [ ] Batch / multi‑file queue
+- [ ] Export report (JSON / Markdown)
+- [ ] Color profile + HDR indicators
+- [ ] In‑browser waveform & frame strip preview
 
-## How can I deploy this project?
+## Contributing
 
-Simply open [Lovable](https://lovable.dev/projects/2919f462-3982-4487-850a-4ee09a978690) and click on Share -> Publish.
+Small focused PRs welcome. Keep UI minimal and performance friendly. Open an issue first for larger changes.
 
-## Can I connect a custom domain to my Lovable project?
+## License
 
-Yes, you can!
+Currently unlicensed (all rights reserved). Add a LICENSE file if distribution terms change.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Made with care for precision media workflows.
